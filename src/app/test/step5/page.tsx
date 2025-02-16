@@ -32,6 +32,7 @@ function Page() {
 
     return (
         <Stack gap={'lg'}>
+            {process.env.DATABASE_URL}
             <ImageSet />
             <Title order={2}>ยินดีด้วยคุณทำสำเร็จแล้ว</Title>
             <Text>ตอนนี้คุณพร้อมกลับไปทำงานอย่างมีประสิทธิภาพแล้ว</Text>
