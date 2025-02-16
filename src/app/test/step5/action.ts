@@ -3,6 +3,7 @@
 import { prismaClient } from "../../../../service/prismaClient"
 
 export const addRating = async ({ rating, feedback }: { rating: number, feedback: string }) => {
+    console.log(process.env.DATABASE_URL);
 
     if (rating < 1) {
         return {
