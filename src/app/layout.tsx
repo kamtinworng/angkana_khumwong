@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import '@mantine/core/styles.css';
 import { createTheme, MantineProvider } from "@mantine/core";
 import "./globals.css";
-
+import '@mantine/notifications/styles.css';
+import { Notifications } from "@mantine/notifications";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -35,6 +36,7 @@ export default function RootLayout({
       </head>
       <body >
         <MantineProvider theme={theme}>
+          <Notifications />
           {children}
         </MantineProvider>
       </body>

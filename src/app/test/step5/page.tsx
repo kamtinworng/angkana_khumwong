@@ -4,23 +4,54 @@ import { IconMailForward } from "@tabler/icons-react"
 import { useState } from "react";
 import ImageSet from "./components/view";
 import { useRouter } from "next/navigation";
+import { addRating } from "./action";
+import { notifications } from "@mantine/notifications";
 
 function Page() {
-    const [value, setValue] = useState(0);
     const router = useRouter()
+    const [value, setValue] = useState(0)
+    const [feedback, setFeeback] = useState('')
+
+    const submit = async () => {
+        const result = await addRating({ rating: value, feedback: feedback })
+        if (result?.status === 200) {
+            notifications.show({
+                message: result.message,
+                title: 'สำเร็จ',
+                color: 'green'
+            })
+            router.push('../success')
+        } else {
+            notifications.show({
+                message: result?.message,
+                title: 'ไม่สำเร็จ',
+                color: 'red'
+            })
+        }
+    }
+
     return (
         <Stack gap={'lg'}>
             <ImageSet />
             <Title order={2}>ยินดีด้วยคุณทำสำเร็จแล้ว</Title>
-            <Text>ตอนนี้คุณพร้อมกลับไปทำงานอย่างมีคุณภาพแล้ว</Text>
+            <Text>ตอนนี้คุณพร้อมกลับไปทำงานอย่างมีประสิทธิภาพแล้ว</Text>
             <Text>โปรดให้คะแนนกับเรา</Text>
             <Center>
-                <Rating defaultValue={value} onChange={setValue} size="lg" />
+                <Rating value={value} onChange={(e) => setValue(e)}
+                    size="lg" />
             </Center>
             <Text>คำแนะนำส่งถึงเรา</Text>
-            <Textarea></Textarea>
-            <Button onClick={() => router.push('../success')} fullWidth leftSection={<IconMailForward />}>ส่ง</Button>
+            <Textarea
+                value={feedback}
+                onChange={(e) => { setFeeback(e.currentTarget.value) }}
+            ></Textarea>
+            <Button
+                type="submit"
+                disabled={value < 1}
+                onClick={submit}
+                fullWidth leftSection={<IconMailForward />}>ส่ง</Button>
         </Stack >
+
     )
 }
 

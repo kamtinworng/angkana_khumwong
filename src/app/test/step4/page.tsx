@@ -26,7 +26,7 @@ function Page() {
             <Title order={2}>ลองยืดเส้นยืดสายดูสิ</Title>
             <Text>คุณลองยืดเส้นยืดสาย หรือ ลุกขึ้นเดินไปมา</Text>
             <Button onClick={() => router.push('./step5')} loading={isLoading} rightSection={<IconArrowRight />}>รู้สึกมีแรงมากขึ้นแล้ว</Button>
-            <Blockquote color="blue" cite="– อังคณา คุ้มวงษ์" icon={<IconInfoCircle />} >
+            <Blockquote color="blue" icon={<IconInfoCircle />} >
                 ประโยชน์ที่ได้จากการยืดเส้นยืดสาย
                 <List style={{ textAlign: 'start' }}>
                     <List.Item>ทำให้ร่างกายทำงานได้ดี เพราะกล้ามเนื้อไม่ตึง</List.Item>
