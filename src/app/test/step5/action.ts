@@ -28,6 +28,10 @@ export const addRating = async ({ rating, feedback }: { rating: number, feedback
         }
     } catch (error) {
         console.error(error)
+        return {
+            status: 500,
+            message: "Internal Server Error"
+        };
     }
 
 }
