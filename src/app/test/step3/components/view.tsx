@@ -3,7 +3,7 @@ import { Center, Image } from "@mantine/core"
 function ImageSet() {
     return (
         <Center>
-            <Image src={'/drink.svg'} alt="image" w={300} fit="contain" />
+            <Image src={'/drink-gif.gif'} alt="image" w={400} fit="contain" />
         </Center>
     )
 }

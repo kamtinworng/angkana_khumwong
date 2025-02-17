@@ -1,6 +1,6 @@
 'use client'
 import { Button, Text, Stack, Title, Rating, Center, Textarea } from "@mantine/core"
-import { IconMailForward } from "@tabler/icons-react"
+import { IconMailForward, IconMoodConfuzed, IconMoodCrazyHappy, IconMoodCry, IconMoodHappy, IconMoodSad, IconMoodSmile } from "@tabler/icons-react"
 import { useState } from "react";
 import ImageSet from "./components/view";
 import { useRouter } from "next/navigation";
@@ -30,15 +30,59 @@ function Page() {
         }
     }
 
+    const getIconStyle = (color?: string) => ({
+        width: 24,
+        margin: 5,
+        height: 24,
+        color: color ? `var(--mantine-color-${color}-7)` : undefined,
+    });
+
+    const getEmptyIcon = (value: number) => {
+        const iconStyle = getIconStyle();
+
+        switch (value) {
+            case 1:
+                return <IconMoodCry style={iconStyle} />;
+            case 2:
+                return <IconMoodSad style={iconStyle} />;
+            case 3:
+                return <IconMoodConfuzed style={iconStyle} />;
+            case 4:
+                return <IconMoodSmile style={iconStyle} />;
+            case 5:
+                return <IconMoodHappy style={iconStyle} />;
+            default:
+                return null;
+        }
+    };
+
+    const getFullIcon = (value: number) => {
+        switch (value) {
+            case 1:
+                return <IconMoodCry style={getIconStyle('red')} />;
+            case 2:
+                return <IconMoodSad style={getIconStyle('orange')} />;
+            case 3:
+                return <IconMoodConfuzed style={getIconStyle('yellow')} />;
+            case 4:
+                return <IconMoodSmile style={getIconStyle('lime')} />;
+            case 5:
+                return <IconMoodHappy style={getIconStyle('green')} />;
+            default:
+                return null;
+        }
+    };
+
+
     return (
         <Stack gap={'lg'}>
             {process.env.DATABASE_URL}
             <ImageSet />
             <Title order={2}>ยินดีด้วยคุณทำสำเร็จแล้ว</Title>
             <Text>ตอนนี้คุณพร้อมกลับไปทำงานอย่างมีประสิทธิภาพแล้ว</Text>
-            <Text>โปรดให้คะแนนกับเรา</Text>
+            <Text>โปรดให้คะแนนความผ่อนคลายของคุณ จากกิจกรรมของเรา 🥰</Text>
             <Center>
-                <Rating value={value} onChange={(e) => setValue(e)}
+                <Rating emptySymbol={getEmptyIcon} fullSymbol={getFullIcon} highlightSelectedOnly value={value} onChange={(e) => setValue(e)}
                     size="lg" />
             </Center>
             <Text>คำแนะนำส่งถึงเรา</Text>
