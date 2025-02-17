@@ -1,6 +1,6 @@
 'use client'
 import { Button, Text, Stack, Title, Rating, Center, Textarea } from "@mantine/core"
-import { IconMailForward, IconMoodConfuzed, IconMoodCrazyHappy, IconMoodCry, IconMoodHappy, IconMoodSad, IconMoodSmile } from "@tabler/icons-react"
+import { IconMailForward, IconMoodConfuzed, IconMoodCry, IconMoodHappy, IconMoodSad, IconMoodSmile } from "@tabler/icons-react"
 import { useState } from "react";
 import ImageSet from "./components/view";
 import { useRouter } from "next/navigation";
